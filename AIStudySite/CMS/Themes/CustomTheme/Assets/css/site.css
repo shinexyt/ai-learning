@@ -1,0 +1,41 @@
+:root {
+    --ai-primary: #3b82f6;
+    --ai-surface: #ffffff;
+    --ai-foreground: #1f2937;
+    --ai-border: #cbd5f5;
+}
+
+[data-theme="dark"] {
+    --ai-primary: #8b5cf6;
+    --ai-surface: #0f172a;
+    --ai-foreground: #f8fafc;
+    --ai-border: #334155;
+}
+
+body {
+    background: var(--ai-surface);
+    color: var(--ai-foreground);
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.site-header,
+.site-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.theme-toggle {
+    border: none;
+    background: transparent;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.knowledge-tree {
+    min-height: 500px;
+    border: 1px solid var(--ai-border);
+    border-radius: 1rem;
+    margin-top: 2rem;
+}

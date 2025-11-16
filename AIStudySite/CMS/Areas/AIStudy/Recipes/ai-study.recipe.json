@@ -1,0 +1,141 @@
+{
+  "name": "ai-study",
+  "displayName": "AI Study Site",
+  "description": "Bootstrap Orchard Core for the AI tutorial MVP.",
+  "author": "AI Agent",
+  "website": "https://example.com",
+  "version": "1.0.0",
+  "issetuprecipe": true,
+  "categories": ["default"],
+  "steps": [
+    {
+      "name": "feature",
+      "disable": [],
+      "enable": [
+        "OrchardCore.Admin",
+        "OrchardCore.Users",
+        "OrchardCore.Roles",
+        "OrchardCore.Settings",
+        "OrchardCore.Localization",
+        "OrchardCore.ContentLocalization",
+        "OrchardCore.Autoroute",
+        "OrchardCore.Html",
+        "OrchardCore.Taxonomies",
+        "OrchardCore.Contents",
+        "OrchardCore.Liquid",
+        "OrchardCore.Workflows",
+        "OrchardCore.ResourceManagement",
+        "OrchardCore.Themes",
+        "OrchardCore.Menu",
+        "OrchardCore.Users.Registration",
+        "OrchardCore.Users.ResetPassword",
+        "OrchardCore.Deployment",
+        "OrchardCore.ContentLocalization.ContentCulturePicker"
+      ]
+    },
+    {
+      "name": "site",
+      "SiteSettings": {
+        "PageTitleFormat": "{Title} - AI Study",
+        "ResourceDebugMode": "FromConfiguration"
+      }
+    },
+    {
+      "name": "culture",
+      "Cultures": ["en-US", "zh-CN"],
+      "DefaultCulture": "en-US"
+    },
+    {
+      "name": "themes",
+      "Admin": "TheAdmin",
+      "Site": "CustomTheme"
+    },
+    {
+      "name": "roles",
+      "Roles": [
+        {
+          "Name": "FreeUser",
+          "Description": "Default registered user",
+          "Permissions": ["ViewContent"]
+        },
+        {
+          "Name": "PaidUser",
+          "Description": "Subscription member",
+          "Permissions": ["ViewContent", "AccessPaidContent"]
+        }
+      ]
+    },
+    {
+      "name": "settings",
+      "UsersRegistrationSettings": {
+        "UsersCanRegister": true,
+        "UsersMustValidateEmail": false,
+        "UseSiteTheme": true,
+        "UsersMustBeApproved": false,
+        "UsersAreModerated": false,
+        "UsersMustConfirmEmail": false,
+        "DefaultRole": "FreeUser"
+      }
+    },
+    {
+      "name": "contentdefinition",
+      "ContentTypes": [
+        {
+          "Name": "TutorialArticle",
+          "DisplayName": "Tutorial Article",
+          "Settings": {
+            "Creatable": true,
+            "Listable": true,
+            "Draftable": true,
+            "Versionable": true
+          },
+          "ContentType": {
+            "Parts": [
+              {
+                "Name": "TitlePart"
+              },
+              {
+                "Name": "HtmlBodyPart"
+              },
+              {
+                "Name": "AutoroutePart",
+                "Settings": {
+                  "Pattern": "tutorials/{Content.Slug}"
+                }
+              },
+              {
+                "Name": "LocalizationPart"
+              },
+              {
+                "Name": "BagPart",
+                "Settings": {
+                  "DisplayName": "Metadata",
+                  "Description": "Links the article to knowledge nodes",
+                  "ContainedContentTypes": ["TutorialMetadata"]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "Name": "TutorialMetadata",
+          "DisplayName": "Tutorial Metadata",
+          "Settings": {
+            "Attachable": true
+          },
+          "ContentType": {
+            "Parts": [
+              {
+                "Name": "TextField",
+                "Settings": {
+                  "DisplayName": "NodeId",
+                  "Hint": "Knowledge node id"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

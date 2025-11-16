@@ -1,0 +1,28 @@
+{
+  "id": "ai-root",
+  "name": "AI知识结构",
+  "children": [
+    {
+      "id": "llm-basics",
+      "name": "大模型基础",
+      "link": "/zh-CN/tutorials/llm-basics",
+      "children": [
+        {
+          "id": "llm-intro",
+          "name": "什么是LLM",
+          "link": "/zh-CN/tutorials/what-is-llm"
+        },
+        {
+          "id": "llm-prompting",
+          "name": "提示工程",
+          "link": "/zh-CN/tutorials/prompting"
+        }
+      ]
+    },
+    {
+      "id": "vision",
+      "name": "视觉模型",
+      "link": "/zh-CN/tutorials/vision"
+    }
+  ]
+}

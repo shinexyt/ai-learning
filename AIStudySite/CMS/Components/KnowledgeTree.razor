@@ -1,0 +1,27 @@
+@using AIStudySite.Cms.Services
+@inject KnowledgeTreeLoader Loader
+@inject IHttpContextAccessor HttpContextAccessor
+
+<div class="knowledge-tree" id="knowledgeTree"></div>
+
+@code {
+    private string _culture = "en-US";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            return;
+        }
+
+        var requestCulture = HttpContextAccessor.HttpContext?.Features.Get<Microsoft.AspNetCore.Localization.IRequestCultureFeature>();
+        _culture = requestCulture?.RequestCulture.Culture.Name ?? "en-US";
+
+        using var document = await Loader.LoadAsync(_culture);
+        var tree = document.RootElement.Clone();
+        await JS.InvokeVoidAsync("aiStudyTree.init", "knowledgeTree", tree);
+    }
+
+    [Inject]
+    private IJSRuntime JS { get; set; } = default!;
+}

@@ -1,0 +1,5 @@
+@page
+@attribute [Microsoft.AspNetCore.Authorization.Authorize(Roles = "PaidUser")]
+@model Microsoft.AspNetCore.Mvc.RazorPages.PageModel
+<h1>Paid Member Lounge</h1>
+<p>This page demonstrates role-based protection. Only the PaidUser role can see this content.</p>

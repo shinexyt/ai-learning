@@ -1,0 +1,28 @@
+{
+  "id": "ai-root",
+  "name": "AI Knowledge",
+  "children": [
+    {
+      "id": "llm-basics",
+      "name": "LLM Basics",
+      "link": "/tutorials/llm-basics",
+      "children": [
+        {
+          "id": "llm-intro",
+          "name": "What is an LLM?",
+          "link": "/tutorials/what-is-llm"
+        },
+        {
+          "id": "llm-prompting",
+          "name": "Prompt Engineering",
+          "link": "/tutorials/prompting"
+        }
+      ]
+    },
+    {
+      "id": "vision",
+      "name": "Vision Models",
+      "link": "/tutorials/vision"
+    }
+  ]
+}

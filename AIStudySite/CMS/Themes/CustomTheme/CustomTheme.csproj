@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RazorLangVersion>8.0</RazorLangVersion>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="OrchardCore.Theme.Targets" Version="1.8.3" />
+  </ItemGroup>
+</Project>

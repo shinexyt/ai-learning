@@ -1,0 +1,42 @@
+@using OrchardCore.DisplayManagement.ModelBinding
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer T
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
+<html lang="@System.Threading.Thread.CurrentThread.CurrentUICulture.Name" data-theme="light">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@RenderTitleSegments("AI Study Site")</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <link rel="stylesheet" href="~/Themes/CustomTheme/Assets/css/site.css" />
+    @RenderSection("Head", required: false)
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <header class="site-header">
+        <div class="brand">
+            <a href="/">AI Study</a>
+        </div>
+        <div class="actions">
+            <button class="theme-toggle" data-target="theme-toggle">🌙</button>
+            @{ var cultureFeature = Context.Features.Get<Microsoft.AspNetCore.Localization.IRequestCultureFeature>(); }
+            <form method="post" asp-controller="Culture" asp-action="SetCulture" class="culture-switcher">
+                <select name="culture" onchange="this.form.submit()">
+                    <option value="en-US" selected="@(cultureFeature?.RequestCulture.Culture.Name == "en-US" ? "selected" : null)">English</option>
+                    <option value="zh-CN" selected="@(cultureFeature?.RequestCulture.Culture.Name == "zh-CN" ? "selected" : null)">中文</option>
+                </select>
+            </form>
+            <a href="/Login">@T["Login"]</a>
+            <a href="/Register">@T["Register"]</a>
+        </div>
+    </header>
+    <main class="container">
+        @RenderBody()
+    </main>
+    <footer class="site-footer">
+        <p>© @DateTime.UtcNow.Year AI Study</p>
+    </footer>
+    <script src="~/Themes/CustomTheme/Assets/js/theme-toggle.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

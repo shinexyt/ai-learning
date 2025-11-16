@@ -1,0 +1,5 @@
+msgid "AI Knowledge Tree"
+msgstr "AI知识树"
+
+msgid "Click any node to see tutorials powered by Orchard Core CMS."
+msgstr "点击任意知识点查看 Orchard Core CMS 中的教程。"
