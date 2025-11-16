@@ -7,15 +7,23 @@
 @code {
     private string _currentTheme = "light";
     private string _label = "🌙";
+    private bool _initialized = false;
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        _currentTheme = await JSRuntime.InvokeAsync<string>("aiTheme.get");
-        UpdateLabel();
+        if (firstRender)
+        {
+            _currentTheme = await JSRuntime.InvokeAsync<string>("aiTheme.get");
+            UpdateLabel();
+            _initialized = true;
+            StateHasChanged();
+        }
     }
 
     private async Task ToggleTheme()
     {
+        if (!_initialized) return;
+        
         _currentTheme = _currentTheme == "light" ? "dark" : "light";
         await JSRuntime.InvokeVoidAsync("aiTheme.set", _currentTheme);
         UpdateLabel();

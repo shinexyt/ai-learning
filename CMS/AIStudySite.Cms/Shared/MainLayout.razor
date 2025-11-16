@@ -32,3 +32,10 @@
         <p class="muted">@LocalizedText.Get("nav.footer", CultureState.Culture)</p>
     </footer>
 </div>
+
+@code {
+    private void NavigateHome()
+    {
+        Navigation.NavigateTo("/");
+    }
+}
