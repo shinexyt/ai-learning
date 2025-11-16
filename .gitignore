@@ -2,3 +2,5 @@
 **/obj/
 AIStudySite/CMS/App_Data/
 .vs/
+/AIStudySite/CMS/Localization
+/AIStudySite/CMS/Properties

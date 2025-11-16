@@ -8,16 +8,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseNLogHost();
 
 builder.Services.AddLocalization(options => options.ResourcesPath = "Localization");
-
+builder.Services.AddRazorPages();
 builder.Services
     .AddOrchardCms()
     .AddSetupFeatures("OrchardCore.AutoSetup")
     .AddMvc();
 
+
+
 builder.Services.AddControllers();
 builder.Services.AddHttpContextAccessor();
-
-builder.Services.AddServerSideBlazor();
 
 builder.Services.AddSingleton<KnowledgeTreeLoader>();
 
@@ -41,12 +41,14 @@ app.MapControllers();
 app.MapRazorPages();
 
 app.MapDefaultControllerRoute();
-app.MapBlazorHub();
+//app.MapBlazorHub();
 
 app.MapGet("/", context =>
 {
     context.Response.Redirect("/KnowledgeTree", permanent: false);
     return Task.CompletedTask;
 });
+
+app.UseOrchardCore();
 
 app.Run();

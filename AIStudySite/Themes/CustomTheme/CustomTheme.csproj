@@ -3,8 +3,10 @@
     <TargetFramework>net8.0</TargetFramework>
     <RazorLangVersion>8.0</RazorLangVersion>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <BaseOutputPath>..\..\CMS\bin\</BaseOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="OrchardCore.Theme.Targets" Version="1.8.3" />
+    <PackageReference Include="OrchardCore.Theme.Targets" Version="2.2.1" />
+	<PackageReference Include="OrchardCore.DisplayManagement" Version="2.2.1" />
   </ItemGroup>
 </Project>
