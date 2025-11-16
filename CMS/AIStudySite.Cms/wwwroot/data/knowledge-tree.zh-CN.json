@@ -1,0 +1,51 @@
+{
+  "id": "ai",
+  "label": "AI 全景",
+  "url": "/articles?NodeId=ai",
+  "children": [
+    {
+      "id": "foundations",
+      "label": "基础",
+      "url": "/articles?NodeId=foundations",
+      "children": [
+        {
+          "id": "math",
+          "label": "数学基础",
+          "url": "/articles?NodeId=math",
+          "children": []
+        },
+        {
+          "id": "ml",
+          "label": "机器学习",
+          "url": "/articles?NodeId=ml",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "llm",
+      "label": "大语言模型",
+      "url": "/articles?NodeId=llm",
+      "children": [
+        {
+          "id": "llm-basics",
+          "label": "基础概念",
+          "url": "/articles?NodeId=llm-basics",
+          "children": []
+        },
+        {
+          "id": "llm-multimodal",
+          "label": "多模态",
+          "url": "/articles?NodeId=llm-multimodal",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "agents",
+      "label": "智能体",
+      "url": "/articles?NodeId=agents",
+      "children": []
+    }
+  ]
+}

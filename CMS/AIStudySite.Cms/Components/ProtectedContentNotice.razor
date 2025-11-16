@@ -1,0 +1,7 @@
+@inject LocalizedTextService LocalizedText
+@inject UICultureState CultureState
+
+<div class="info-card">
+    <h3>@LocalizedText.Get("pro.notice.title", CultureState.Culture)</h3>
+    <p>@LocalizedText.Get("pro.notice.description", CultureState.Culture)</p>
+</div>

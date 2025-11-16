@@ -1,0 +1,19 @@
+@inject UICultureState CultureState
+@inject LocalizedTextService LocalizedText
+
+<div class="language-selector">
+    <label for="culture-select">@LocalizedText.Get("nav.language", CultureState.Culture)</label>
+    <select id="culture-select" value="@CultureState.Culture" @onchange="OnCultureChanged">
+        <option value="en-US">English</option>
+        <option value="zh-CN">简体中文</option>
+    </select>
+</div>
+
+@code {
+    private Task OnCultureChanged(ChangeEventArgs args)
+    {
+        var selected = args.Value?.ToString() ?? "en-US";
+        CultureState.SetCulture(selected);
+        return Task.CompletedTask;
+    }
+}

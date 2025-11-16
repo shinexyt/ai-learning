@@ -1,0 +1,13 @@
+@page "/"
+@inject UICultureState CultureState
+@inject LocalizedTextService LocalizedText
+
+<PageTitle>@LocalizedText.Get("home.title", CultureState.Culture)</PageTitle>
+
+<div class="app-section">
+    <div class="section-header">
+        <h1>@LocalizedText.Get("home.headline", CultureState.Culture)</h1>
+        <p>@LocalizedText.Get("home.subheadline", CultureState.Culture)</p>
+    </div>
+    <KnowledgeTree Culture="@CultureState.Culture" />
+</div>

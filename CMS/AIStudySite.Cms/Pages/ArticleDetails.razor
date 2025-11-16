@@ -1,0 +1,46 @@
+@page "/tutorials/{Slug}"
+@inject TutorialArticleService ArticleService
+@inject LocalizedTextService LocalizedText
+@inject UICultureState CultureState
+
+<PageTitle>@_title</PageTitle>
+
+<div class="app-section">
+    @if (_loading)
+    {
+        <p class="muted">@LocalizedText.Get("loading", CultureState.Culture)</p>
+    }
+    else if (_article is null)
+    {
+        <p class="muted">@LocalizedText.Get("articles.notfound", CultureState.Culture)</p>
+    }
+    else
+    {
+        <article class="article-view">
+            <header>
+                <p class="muted tag">@_article.NodeId · @_article.Culture</p>
+                <h1>@_article.Title</h1>
+            </header>
+            <section class="article-body" @onclick:stopPropagation="true">
+                @((MarkupString)_article.Body)
+            </section>
+        </article>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string Slug { get; set; } = string.Empty;
+
+    private TutorialArticleDetails? _article;
+    private string _title = "Tutorial";
+    private bool _loading = true;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        _loading = true;
+        _article = await ArticleService.GetDetailsBySlugAsync(Slug, CultureState.Culture);
+        _title = _article?.Title ?? LocalizedText.Get("articles.title", CultureState.Culture);
+        _loading = false;
+    }
+}

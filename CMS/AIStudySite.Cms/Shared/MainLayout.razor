@@ -1,0 +1,34 @@
+@inherits LayoutComponentBase
+@inject NavigationManager Navigation
+@inject LocalizedTextService LocalizedText
+@inject UICultureState CultureState
+
+<div class="layout">
+    <header class="site-header">
+        <div class="brand" @onclick="NavigateHome">
+            <span class="brand-mark">🤖</span>
+            <div>
+                <strong>AI Study Hub</strong>
+                <small>@LocalizedText.Get("nav.tagline", CultureState.Culture)</small>
+            </div>
+        </div>
+        <nav class="nav-links">
+            <a href="/">@LocalizedText.Get("nav.home", CultureState.Culture)</a>
+            <a href="/articles">@LocalizedText.Get("nav.articles", CultureState.Culture)</a>
+            <a href="/pro">@LocalizedText.Get("nav.pro", CultureState.Culture)</a>
+            <a href="/Login">@LocalizedText.Get("nav.login", CultureState.Culture)</a>
+            <a class="btn" href="/Register">@LocalizedText.Get("nav.register", CultureState.Culture)</a>
+        </nav>
+        <div class="toolbar">
+            <LanguageSelector />
+            <ThemeToggle />
+        </div>
+    </header>
+    <main>
+        @Body
+    </main>
+    <footer class="site-footer">
+        <p>© @DateTime.UtcNow.Year AI Study Hub</p>
+        <p class="muted">@LocalizedText.Get("nav.footer", CultureState.Culture)</p>
+    </footer>
+</div>

@@ -1,0 +1,77 @@
+@page "/articles"
+@implements IDisposable
+@inject TutorialArticleService ArticleService
+@inject NavigationManager Navigation
+@inject UICultureState CultureState
+@inject LocalizedTextService LocalizedText
+
+<PageTitle>@LocalizedText.Get("articles.title", CultureState.Culture)</PageTitle>
+
+<div class="app-section">
+    <div class="section-header">
+        <h1>@LocalizedText.Get("articles.headline", CultureState.Culture)</h1>
+        <p>@LocalizedText.Get("articles.description", CultureState.Culture)</p>
+    </div>
+
+    @if (_loading)
+    {
+        <p class="muted">@LocalizedText.Get("loading", CultureState.Culture)</p>
+    }
+    else if (_articles.Count == 0)
+    {
+        <p class="muted">@LocalizedText.Get("articles.empty", CultureState.Culture)</p>
+    }
+    else
+    {
+        <div class="card-list">
+            @foreach (var article in _articles)
+            {
+                <article class="info-card">
+                    <h3><a href="@($"/tutorials/{article.Slug}")">@article.Title</a></h3>
+                    <p class="muted">@LocalizedText.Get("articles.node", CultureState.Culture): @article.NodeId</p>
+                    <a class="btn-link" href="@($"/tutorials/{article.Slug}")">@LocalizedText.Get("articles.read", CultureState.Culture)</a>
+                </article>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    [SupplyParameterFromQuery]
+    public string? NodeId { get; set; }
+
+    private readonly List<TutorialArticleSummary> _articles = new();
+    private bool _loading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        CultureState.Changed += HandleCultureChanged;
+        await LoadAsync();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await LoadAsync();
+    }
+
+    private async Task LoadAsync()
+    {
+        _loading = true;
+        StateHasChanged();
+        var items = await ArticleService.GetSummariesAsync(CultureState.Culture, NodeId);
+        _articles.Clear();
+        _articles.AddRange(items);
+        _loading = false;
+        StateHasChanged();
+    }
+
+    private async void HandleCultureChanged(object? sender, string culture)
+    {
+        await LoadAsync();
+    }
+
+    public void Dispose()
+    {
+        CultureState.Changed -= HandleCultureChanged;
+    }
+}

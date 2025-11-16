@@ -1,0 +1,62 @@
+{
+  "name": "AIStudySite.Module:AITutorialSite",
+  "displayName": "AI Tutorial Site",
+  "description": "Pre-configured Orchard Core tenant for the AI Study Site",
+  "author": "AI Study Team",
+  "website": "https://example.com",
+  "version": "1.0.0",
+  "issetuprecipe": true,
+  "categories": ["ai", "tutorials"],
+  "steps": [
+    {
+      "name": "feature",
+      "enable": [
+        "OrchardCore.Features",
+        "OrchardCore.Users",
+        "OrchardCore.Roles",
+        "OrchardCore.Localization",
+        "OrchardCore.ContentLocalization",
+        "OrchardCore.Autoroute",
+        "OrchardCore.Html",
+        "OrchardCore.Contents",
+        "OrchardCore.Lists",
+        "OrchardCore.Taxonomies",
+        "OrchardCore.ContentFields",
+        "OrchardCore.Media",
+        "OrchardCore.Deployment",
+        "OrchardCore.Title",
+        "OrchardCore.ReverseProxy",
+        "OrchardCore.Users.Registration",
+        "AIStudySite.Module",
+        "AIStudySite.Theme"
+      ]
+    },
+    {
+      "name": "settings",
+      "dictionary": {
+        "LocalizationSettings": {
+          "SupportedCultures": ["en-US", "zh-CN"],
+          "DefaultCulture": "en-US"
+        }
+      }
+    },
+    {
+      "name": "roles",
+      "roles": [
+        {
+          "Name": "FreeUser",
+          "Description": "Default registered learner"
+        },
+        {
+          "Name": "PaidUser",
+          "Description": "Premium learner with access to gated tutorials"
+        }
+      ]
+    },
+    {
+      "name": "themes",
+      "SiteTheme": "AIStudySite.Theme",
+      "AdminTheme": "TheAdmin"
+    }
+  ]
+}

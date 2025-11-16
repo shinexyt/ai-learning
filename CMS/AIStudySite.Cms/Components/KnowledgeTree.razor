@@ -1,0 +1,59 @@
+@inject IHttpClientFactory ClientFactory
+@inject IJSRuntime JSRuntime
+@inject ILogger<KnowledgeTree> Logger
+@inject NavigationManager Navigation
+
+<div id="@_elementId" class="tree-surface">
+    @if (_loading)
+    {
+        <p class="muted">Loading knowledge tree…</p>
+    }
+    else if (_error is not null)
+    {
+        <p class="text-error">@_error</p>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string Culture { get; set; } = "en-US";
+
+    private readonly string _elementId = $"tree_{Guid.NewGuid():N}";
+    private KnowledgeTreeNode? _root;
+    private bool _loading = true;
+    private string? _error;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await LoadTreeAsync();
+    }
+
+    private async Task LoadTreeAsync()
+    {
+        try
+        {
+            _loading = true;
+            _error = null;
+            var client = ClientFactory.CreateClient();
+            client.BaseAddress ??= new Uri(Navigation.BaseUri);
+            _root = await client.GetFromJsonAsync<KnowledgeTreeNode>($"data/knowledge-tree.{Culture}.json");
+            _loading = false;
+            await JSRuntime.InvokeVoidAsync("aiStudyTree.render", _elementId, _root);
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Failed to load knowledge tree");
+            _error = ex.Message;
+            _loading = false;
+        }
+    }
+
+    private sealed record KnowledgeTreeNode
+    {
+        public string Id { get; init; } = string.Empty;
+        public string Label { get; init; } = string.Empty;
+        public string? Url { get; init; }
+        public string? Description { get; init; }
+        public List<KnowledgeTreeNode> Children { get; init; } = new();
+    }
+}

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <RazorLangVersion>8.0</RazorLangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="OrchardCore.Module.Targets" Version="1.8.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Recipes\**\*.recipe.json" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="Localization\**\*.po" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

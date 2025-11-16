@@ -1,0 +1,51 @@
+{
+  "id": "ai",
+  "label": "AI Overview",
+  "url": "/articles",
+  "children": [
+    {
+      "id": "foundations",
+      "label": "Foundations",
+      "url": "/articles?NodeId=foundations",
+      "children": [
+        {
+          "id": "math",
+          "label": "Math",
+          "url": "/articles?NodeId=math",
+          "children": []
+        },
+        {
+          "id": "ml",
+          "label": "Machine Learning",
+          "url": "/articles?NodeId=ml",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "llm",
+      "label": "Large Language Models",
+      "url": "/articles?NodeId=llm",
+      "children": [
+        {
+          "id": "llm-basics",
+          "label": "LLM Basics",
+          "url": "/articles?NodeId=llm-basics",
+          "children": []
+        },
+        {
+          "id": "llm-multimodal",
+          "label": "Multimodal",
+          "url": "/articles?NodeId=llm-multimodal",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "agents",
+      "label": "AI Agents",
+      "url": "/articles?NodeId=agents",
+      "children": []
+    }
+  ]
+}

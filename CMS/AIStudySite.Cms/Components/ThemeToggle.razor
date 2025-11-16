@@ -1,0 +1,28 @@
+@inject IJSRuntime JSRuntime
+
+<div class="theme-toggle">
+    <button type="button" @onclick="ToggleTheme">@_label</button>
+</div>
+
+@code {
+    private string _currentTheme = "light";
+    private string _label = "🌙";
+
+    protected override async Task OnInitializedAsync()
+    {
+        _currentTheme = await JSRuntime.InvokeAsync<string>("aiTheme.get");
+        UpdateLabel();
+    }
+
+    private async Task ToggleTheme()
+    {
+        _currentTheme = _currentTheme == "light" ? "dark" : "light";
+        await JSRuntime.InvokeVoidAsync("aiTheme.set", _currentTheme);
+        UpdateLabel();
+    }
+
+    private void UpdateLabel()
+    {
+        _label = _currentTheme == "light" ? "🌙" : "🌞";
+    }
+}

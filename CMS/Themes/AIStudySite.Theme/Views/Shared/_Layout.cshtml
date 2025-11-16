@@ -1,0 +1,29 @@
+@inherits OrchardCore.DisplayManagement.Razor.RazorPage<TModel>
+<!DOCTYPE html>
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.Name" data-theme="light">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@RenderTitleSegments("AI Study Hub")</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="brand">
+            <span class="brand-mark">🤖</span>
+            <div>
+                <strong>AI Study Hub</strong>
+                <small>@T["AI tutorials powered by Orchard Core"]</small>
+            </div>
+        </div>
+    </header>
+    <main class="app-section">
+        @await RenderBodyAsync()
+    </main>
+    <footer class="site-footer">
+        <p>@T["Theme provided for Orchard Core front-end content"]</p>
+    </footer>
+    <script src="~/js/themeToggle.js" asp-append-version="true"></script>
+    <script src="~/js/knowledgeTree.js" asp-append-version="true"></script>
+</body>
+</html>

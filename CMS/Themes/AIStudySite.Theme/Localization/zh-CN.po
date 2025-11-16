@@ -1,0 +1,5 @@
+msgid "AI tutorials powered by Orchard Core"
+msgstr "Orchard Core 驱动的 AI 教程"
+
+msgid "Theme provided for Orchard Core front-end content"
+msgstr "主题为 Orchard Core 前端内容提供样式"

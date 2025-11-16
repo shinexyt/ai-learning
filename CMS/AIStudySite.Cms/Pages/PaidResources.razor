@@ -1,0 +1,12 @@
+@page "/pro"
+@attribute [Authorize(Roles = "PaidUser")]
+@inject LocalizedTextService LocalizedText
+@inject UICultureState CultureState
+
+<PageTitle>@LocalizedText.Get("pro.title", CultureState.Culture)</PageTitle>
+
+<div class="app-section">
+    <h1>@LocalizedText.Get("pro.headline", CultureState.Culture)</h1>
+    <p>@LocalizedText.Get("pro.description", CultureState.Culture)</p>
+    <ProtectedContentNotice />
+</div>

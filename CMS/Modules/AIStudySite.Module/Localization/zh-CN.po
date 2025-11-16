@@ -1,0 +1,14 @@
+msgid "AI Tutorial Site"
+msgstr "AI教程站点"
+
+msgid "Tutorial Article"
+msgstr "教程文章"
+
+msgid "Knowledge Node Id"
+msgstr "知识节点ID"
+
+msgid "Culture"
+msgstr "语言"
+
+msgid "Tags"
+msgstr "标签"
